@@ -1,9 +1,8 @@
 import numpy as np
 
-# 广义极角，theta = 2*pi*s/l l为边界的长度，s为边界上的点到起点的距离
-
 
 def get_thetas(curve_points):
+    """广义极角，theta = 2*pi*s/l l为边界的长度，s为边界上的点到起点的距离"""
     # l = ∑(√((x_i+1-x_i)^2+(y_i+1-y_i)^2))
     # s 为边界上的点到起点的距离
     s = [0]
@@ -20,6 +19,7 @@ def get_thetas(curve_points):
 
 
 def get_a_ns(thetas, curve_points, n):
+    """求解傅立叶级数的系数 a_n """
     a_ns0 = []
     a_ns1 = []
     for i in range(-n, n+1, 1):

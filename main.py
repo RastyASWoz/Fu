@@ -5,22 +5,20 @@ import cal1
 
 image_path = 'img/3.jpeg'
 
-# 画出边界
-
 
 def plot_curve(curve_points):
+    """画出边界"""
     plt.figure(figsize=(6, 6))
     plt.plot(curve_points[:, 0], curve_points[:, 1])
     plt.show()
-    # for i in range(0,len(curve_points),50):
-    #     plt.scatter(curve_points[i][0],curve_points[i][1],c='r')
-    #     plt.draw()
-    #     plt.pause(0.1)
-
-# 画出傅里叶级数的结果
+  #   for i in range(0, len(curve_points), 50):
+  #       plt.scatter(curve_points[i][0], curve_points[i][1], c='r')
+  #       plt.draw()
+  #       plt.pause(0.1)
 
 
 def plot_res1(curve_points, n, mode=0):
+    """画出傅里叶级数的结果"""
     thetas = cal1.get_thetas(curve_points)
     a_ns, r_0 = cal1.get_a_ns(thetas, curve_points, n)
 
@@ -32,7 +30,8 @@ def plot_res1(curve_points, n, mode=0):
     f_values = np.array(f_values)
 
     # 使用matplotlib的plot函数绘制图像
-    plt.figure(figsize=(6, 8))
+    if (mode == 0):
+        plt.figure(figsize=(6, 8))
     plt.plot(curve_points[:, 0], curve_points[:, 1])
     plt.plot(f_values[:, 0], f_values[:, 1])
 
@@ -50,4 +49,7 @@ def plot_res1(curve_points, n, mode=0):
 curve_points = image.get_curve_points(image_path)
 plot_curve(curve_points)
 curve_points = np.array(curve_points)
-plot_res1(curve_points, 50, 0)
+
+plt.figure(figsize=(6, 8))
+for i in range(2, 50):
+    plot_res1(curve_points, i, mode=1)
