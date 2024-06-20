@@ -3,7 +3,7 @@ import numpy as np
 
 def get_thetas(curve_points):
     """广义极角，theta = 2*pi*s/l l为边界的长度，s为边界上的点到起点的距离"""
-    # l = ∑(√((x_i+1-x_i)^2+(y_i+1-y_i)^2))
+    # l = ∑(√((x_{i+1} - x_i)^2 + (y_{i+1} - y_i)^2))
     # s 为边界上的点到起点的距离
     s = [0]
     for i in range(1, len(curve_points), 1):
