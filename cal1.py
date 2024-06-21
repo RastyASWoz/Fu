@@ -67,7 +67,9 @@ def get_a_ns(thetas, curve_points, n):
 def F(r_0, theta, a_ns, n):
     # F(θ) = ∑(a_n * e^(inθ))
     r = np.array([0.0, 0.0])
-    for i in range(-n, n+1, 1):
-        r += a_ns[0][i+n] * np.array([np.cos(i*theta), np.sin(i*theta)]) + \
-            a_ns[1][i+n] * np.array([np.sin(i*theta), np.cos(i*theta)])
+    acun = int((len(a_ns[0]) - 1) / 2)
+    for i in range(acun-n, acun+n+1, 1):
+        r += a_ns[0][i] * np.array([np.cos((i-acun)*theta), np.sin((i-acun)*theta)]) + \
+            a_ns[1][i] * np.array([np.sin((i-acun)*theta),
+                                  np.cos((i-acun)*theta)])
     return r_0+r
