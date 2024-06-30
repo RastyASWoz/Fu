@@ -23,7 +23,9 @@ def plot_res1(curve_points, n, mode=0):
     prof__t0 = time.time()
     prof__td = 0
 
+    curve_points = np.append(curve_points, [curve_points[0]], axis=0)
     thetas = cal1.get_thetas(curve_points)
+
     a_ns = cal1.get_a_ns(thetas, curve_points, n)
     # 生成一个θ的值的序列，例如从0到2π，步长为0.01
     drawthetas = np.arange(0, 2 * np.pi, 0.01)
@@ -31,8 +33,7 @@ def plot_res1(curve_points, n, mode=0):
 
     # 使用matplotlib的plot函数绘制图像
     if (mode == 0):
-        f_values = [cal1.F(theta, a_ns, n) for theta in drawthetas]
-        f_values = np.array(f_values)
+        f_values = cal1.F(drawthetas, a_ns, n)
 
         plt.figure(figsize=(6, 8))
         plt.title('n = ' + str(n))
@@ -45,8 +46,7 @@ def plot_res1(curve_points, n, mode=0):
         for i in range(2, n+1):
             prof__t0 = time.time()
 
-            f_values = [cal1.F(theta, a_ns, i) for theta in drawthetas]
-            f_values = np.array(f_values)
+            f_values = cal1.F(drawthetas, a_ns, i)
 
             prof__td += time.time() - prof__t0
 
